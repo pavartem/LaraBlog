@@ -12,23 +12,8 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::paginate(2);
-        $popularPosts = Post::orderBy('views','desc')->take(3)->get();
 
-        $featuredPosts = Post::where('is_featured',1)->take(3)->get();
-
-        $recentPosts = Post::orderBy('date','desc')->take(4)->get();
-
-        $categories = Category::all();
-
-
-       return view('pages.index', [
-           'posts' => $posts,
-           'popularPosts' => $popularPosts,
-           'featuredPosts' => $featuredPosts,
-           'recentPosts' => $recentPosts,
-           'categories' => $categories
-
-       ]);
+       return view('pages.index')->with('posts',$posts);
     }
 
 

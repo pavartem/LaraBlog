@@ -23,7 +23,7 @@
                 </a>
 
                 <div class="p-content">
-                    <a href="#" class="text-uppercase">{{$post->title}}</a>
+                    <a href="{{route('post.show',$post->id)}}" class="text-uppercase">{{$post->title}}</a>
                     <span class="p-date">{{$post->date}}</span>
 
                 </div>
@@ -40,7 +40,7 @@
                     <div class="feature-content">
                         <img src="{{$post->getImage()}}" alt="">
 
-                        <a href="#" class="overlay-text text-center">
+                        <a href="{{route('post.show',$post->id)}}" class="overlay-text text-center">
                             <h5 class="text-uppercase">{{$post->title}}</h5>
 
                             <p>{!! $post->description !!}</p>

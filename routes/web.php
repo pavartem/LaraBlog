@@ -11,13 +11,23 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/post/{id}', 'HomeController@show')->name('post.show');
 
 Route::get('/tag/{id}', 'HomeController@tag')->name('tag.show');
 
 Route::get('/category/{id}', 'HomeController@category')->name('category.show');
+
+Route::get('/register', 'AuthController@registerForm');
+
+Route::post('/register', 'AuthController@register');
+
+Route::get('/login', 'AuthController@loginForm');
+
+Route::post('/login', 'AuthController@login');
+
+Route::get('/logout', 'AuthController@logout');
 
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){

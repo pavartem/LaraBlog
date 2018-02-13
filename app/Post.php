@@ -39,6 +39,11 @@ class Post extends Model
 
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
     public static function add($fields)
     {
@@ -241,6 +246,11 @@ class Post extends Model
     public function hasCategory()
     {
         return $this->category != null ? true : false;
+    }
+
+    public function getComments()
+    {
+        return $this->comments()->where('status',1)->get();
     }
 
 

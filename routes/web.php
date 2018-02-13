@@ -24,6 +24,10 @@ Route::get('/category/{id}', 'HomeController@category')->name('category.show');
 Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/logout', 'AuthController@logout');
+    Route::get('/profile', 'ProfileController@index');
+    Route::post('/profile', 'ProfileController@store');
+    Route::post('/comment','CommentsController@store');
+
 
 });
 
@@ -31,7 +35,7 @@ Route::group(['middleware' => 'guest'], function (){
 
     Route::get('/register', 'AuthController@registerForm');
     Route::post('/register', 'AuthController@register');
-    Route::get('/login', 'AuthController@loginForm');
+    Route::get('/login', 'AuthController@loginForm')->name('login');
     Route::post('/login', 'AuthController@login');
 
 });
@@ -44,14 +48,12 @@ Route::group(['middleware' => 'guest'], function (){
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], function(){
 
     Route::get('/', 'DashboardController@index');
-
     Route::resource('/categories', 'CategoriesController');
-
     Route::resource('/tags', 'TagsController');
-
     Route::resource('/users', 'UsersController');
-
     Route::resource('/posts', 'PostsController');
+    Route::get('/comments','CommentsController@index');
+    Route::get('/comments/toggle/{id}','CommentsController@toggle');
 
 });
 
